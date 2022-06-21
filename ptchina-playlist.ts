@@ -65,7 +65,7 @@ function createPlaylist(filename:string,medias:IFile[]){
 		const media = medias[i];
 
 		lines.push(`#EXTINF:${media.duration}, ${media.originalFilename}`)
-		lines.push(`https://ptchan.org/file/${media.filename}`)
+		lines.push(`${location.origin}/file/${media.filename}`)
 	}
 
 	let playlist = lines.join("\n")
