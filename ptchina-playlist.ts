@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 interface IFile{
 	filename:string
 	extension:string
@@ -88,13 +91,18 @@ async function threadToPlaylist(){
 		document.body.removeChild(a)
 	
 	}
-
-
+	
 	const thread = await getThread()
 	const files = await getMedia(thread)
 	const playlist = await createPlaylist(files)
 
-	downloadPlaylist(`${thread.board}-${thread.postId}.m3u`,playlist)
+	if(playlist.split('\n').length > 1)
+	{
+		downloadPlaylist(`${thread.board}-${thread.postId}.m3u`,playlist)
+	}
+	else{
+		console.log('No video/audio files in this thread.')
+	}
 }
 
 threadToPlaylist()
